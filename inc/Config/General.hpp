@@ -13,6 +13,7 @@ extern "C" {
  
 	#include "SDL.h"
 	#include "SDL_image.h"
+	#include "SDL_video.h"
 
 #ifdef __cplusplus
 }
@@ -22,6 +23,19 @@ extern "C" {
 
 #include "Exception.hpp"
 
+
+/*============================
+=            SDL2            =
+============================*/
+
+void SetAttributeGL(){
+
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+}
 
 void InitSDL(){
 
@@ -40,6 +54,9 @@ void CloseSDL(){
 	IMG_Quit();
 	SDL_Quit();
 }
+
+/*=====  End of SDL2  ======*/
+
 
 /*==================================
 =            Dear ImGUI            =
@@ -135,7 +152,8 @@ void InitImGUI(){
 }
 
 void CloseImGUI(){
-	ImGui_ImplSDLRenderer_Shutdown();
+	//ImGui_ImplSDLRenderer_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	/*----------  Implot.h  ----------*/
 	//ImPlot::DestroyContext(); <---------------------------

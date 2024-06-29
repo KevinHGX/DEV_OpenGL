@@ -1,0 +1,8 @@
+<configuracion>
+	<title>ENGINE</title>
+	<icon>ICON_BLACK_LOGO</icon>
+	<window>
+		<sizeWidth>1100</sizeWidth>
+		<sizeHeight>600</sizeHeight>
+	</window>
+</configuracion>

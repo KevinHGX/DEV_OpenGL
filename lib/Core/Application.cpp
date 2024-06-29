@@ -3,9 +3,10 @@
 
 void Application::StartUp(){
 	ConfWindow->SetUpWindow();
-    UI->SetUp(ConfWindow->getWindow(),ConfWindow->getRenderer());
-    time.fpsTimer.start();
-	time.capTimer.start();
+	ConfWindow->SetGL();
+    UI->SetUp(ConfWindow->getWindow(),ConfWindow->getContext());
+    //time.fpsTimer.start();
+	//time.capTimer.start();
 }
 
 void Application::Execute(){
@@ -16,7 +17,7 @@ void Application::Execute(){
 		Clear();
 		Render();
 
-		this->time.Delay();
+		//this->time.Delay();
 		//SDL_Delay(50);
     }
 }
@@ -33,16 +34,19 @@ void Application::Events(){
 void Application::Update() {
 	UI->UpdateNewFrame();
 	UI->TestCaseImGui();
-	this->time.capTimer.start();
-	this->time.Update();
+	//this->time.capTimer.start();
+	//this->time.Update();
 }
 
 void Application::Clear() {
-	SDL_RenderClear(ConfWindow->getRenderer());
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Application::Render() {
+void Application::Render() {	
+
 	UI->Render();
-	SDL_SetRenderDrawColor(ConfWindow->getRenderer(),0,0,0,255);
-	SDL_RenderPresent(ConfWindow->getRenderer());
+		
+
+	SDL_GL_SwapWindow(ConfWindow->getWindow());
 }

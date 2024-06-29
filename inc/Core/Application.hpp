@@ -12,17 +12,22 @@
 #include "../UI/UIManager.hpp"
 #include "../Util/Timer.hpp"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	#include "SDL_opengl.h"
+	#include "glad.h"
+#ifdef __cplusplus
+}
+#endif
+
 /*==================================
 =            Dear ImGUI            =
 ==================================*/
 
-
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_sdlrenderer.h"
-
-//#include "imgui_stdlib.hpp" INPUT
-
 
 /*=====  End of Dear ImGui  ======*/
 
@@ -56,7 +61,7 @@ private:
 
 private:
 	
-	FPS time;
+	//FPS time;
 	bool statusApplication = false;
 	SDL_Event event;
 	

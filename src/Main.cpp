@@ -1,5 +1,3 @@
-//sdl_ic63aaeff0c6e6
-
 #include "../inc/Core/Application.hpp"
 #include "../inc/Config/General.hpp"
 
@@ -10,6 +8,7 @@ int main(int, char**) {//SDL Main
     try {
 
         InitSDL();
+        SetAttributeGL();
 
         Application::getInstance().StartUp();
         Application::getInstance().Execute();

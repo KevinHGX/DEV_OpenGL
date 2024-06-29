@@ -25,16 +25,6 @@ MemoryCleanUp(T*& puntero) {
     }
 }
 
-// Definición parcial de MemoryCleanUp para T = SDL_Renderer
-template<typename T>
-typename std::enable_if<std::is_same<T, SDL_Renderer>::value>::type
-MemoryCleanUp(T*& puntero) {
-    if (puntero != nullptr) {
-        SDL_DestroyRenderer(puntero);
-        puntero = nullptr;
-    }
-}
-
 // Definición parcial de MemoryCleanUp para T = SDL_Texture
 template<typename T>
 typename std::enable_if<std::is_same<T, SDL_Texture>::value>::type

@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 	#include "SDL.h"
+	#include "glad.h"
 
 #ifdef __cplusplus
 }
@@ -16,19 +17,16 @@ extern "C" {
 //IMGUI
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
-#include "imgui_impl_sdlrenderer.h"
-//IMPLOT
-//#include "implot.h"
-//#include "implot_internal.h"
+#include "imgui_impl_opengl3.h"
 
 class UIManager{
 public:
 	UIManager(){}
 	~UIManager(){}
 
-	inline void SetUp(SDL_Window* _window,SDL_Renderer* _renderer){
-		ImGui_ImplSDL2_InitForSDLRenderer(_window,_renderer);
-    	ImGui_ImplSDLRenderer_Init(_renderer);
+	inline void SetUp(SDL_Window* _window,SDL_GLContext _context){
+    	ImGui_ImplSDL2_InitForOpenGL(_window, _context);
+    	ImGui_ImplOpenGL3_Init("#version 330");
 	}
 
 	static inline void InputEvent(const SDL_Event& _event){	
@@ -42,19 +40,15 @@ public:
         }
 	}
 
-	//inline void TestCaseImPlot(){
-	//	ImPlot::ShowDemoWindow(true);
-	//}
-
 	inline void UpdateNewFrame(){
-   		ImGui_ImplSDLRenderer_NewFrame();
+		ImGui_ImplOpenGL3_NewFrame();
     	ImGui_ImplSDL2_NewFrame();
     	ImGui::NewFrame();
 	}
 
 	inline void Render(){
 		ImGui::Render();
-	    ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
+    	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
 private:

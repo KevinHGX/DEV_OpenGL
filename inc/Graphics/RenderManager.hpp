@@ -13,17 +13,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-	#include "SDL.h"
-	#include "SDL_image.h"
-
+	//SDL
+	#include "SDL.h" //window
+	#include "SDL_image.h" //icons
+	#include "SDL_video.h"
+	//GLAD
+	#include "glad.h"
 #ifdef __cplusplus
 }
 #endif
 
 /*=====  End of SDL2  ======*/
 
+/*=============================================
+=                Own Headers                  = 
+=============================================*/
+
 #include "../Config/Complements.hpp"
+
+/*=========   End of Own Headers   ==========*/
+
+/*=======================================
+=            CONAN'S LIBRARY            =
+=======================================*/
+
+#include "pugixml.hpp"
+
+/*=====  End of CONAN'S LIBRARY  ======*/
 
 /*----------  Class principal  ----------*/
 
@@ -42,12 +58,9 @@ public:
 		Cleanup();
 	}
 
+	void initSettingXMLWindow();
 	void SetUpWindow();
 	void Cleanup();
-
-	inline SDL_Renderer* getRenderer() const {
-		return this->renderer;
-	}
 
 	inline SDL_Window* getWindow() const {
 		return this->window;
@@ -61,14 +74,28 @@ public:
 		return this->SCREEN_HEIGHT;
 	}
 
+	inline SDL_GLContext getContext() const{
+		return this->context;
+	}
+
+	inline void SetGL(){
+		glClearColor(0,0,0,1);
+    	glClear(GL_COLOR_BUFFER_BIT);
+    	SDL_GL_SwapWindow(this->window);
+	}
+
+
 private:
 	SDL_Window* window{NULL};
-	SDL_Renderer* renderer{NULL};
+	//OpenGl
+	SDL_GLContext context;
 
 public:
 	
-	const int SCREEN_WIDTH = 1100;
-	const int SCREEN_HEIGHT = 600;
+	std::string Title = "";
+	std::string ICON = "";
+	int SCREEN_WIDTH;
+	int SCREEN_HEIGHT;
 
 };
 
