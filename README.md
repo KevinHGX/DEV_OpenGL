@@ -13,7 +13,7 @@ Este repositorio está dedicado al aprendizaje y desarrollo en OpenGL, utilizand
 
 ## Estructura del Repositorio
 
-El repositorio está organizado en carpetas, cada una correspondiente a un proyecto o etapa específica del aprendizaje.
+El repositorio está organizado a un proyecto o etapa específica del aprendizaje, definiendo el progreso obtenido, a partir de el historial de commits(TAG).
 
 ### Proyectos
 
